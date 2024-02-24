@@ -17,5 +17,5 @@ Whether you're new to JMS or an experienced developer looking for advanced messa
 To get started with the project, follow these steps:
 
 1. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/yourusername/jms-messaging-service-showcase.git
+   ```sh   
+   git clone https://github.com/may-boy/MessagingService.git
