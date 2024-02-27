@@ -2,9 +2,8 @@ package org.example.message.filtering;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
+import javax.jms.*;
+import java.util.Arrays;
 
 public class JmsProvider
 {
@@ -15,8 +14,21 @@ public class JmsProvider
 	public static Connection getConnection() throws JMSException
 	{
 		System.out.println("Creating a connection");
-		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(USERNAME,PASSWORD,BROKER_URL);
-		return connectionFactory.createConnection();
+		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(USERNAME,PASSWORD,BROKER_URL);
+		activeMQConnectionFactory.setTrustAllPackages(false);
+		activeMQConnectionFactory.setTrustedPackages(Arrays.asList("org.example.message"));
+		return activeMQConnectionFactory.createConnection();
+	}
+
+	public static Queue createQueue(String queueName) {
+		try {
+			Connection connection = getConnection();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			return session.createQueue(queueName);
+		} catch (JMSException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }
