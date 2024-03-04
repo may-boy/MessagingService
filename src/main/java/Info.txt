@@ -63,6 +63,7 @@ Configure security settings in your JMS broker and client applications to enforc
 Experiment with different security mechanisms to ensure confidentiality, integrity, and availability of your messaging system.
 
 
+
 Day 10: Performance Tuning and Optimization
 
 Explore performance tuning techniques for JMS applications, such as connection pooling, prefetching, and message batching.
